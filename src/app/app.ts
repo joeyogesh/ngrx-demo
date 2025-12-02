@@ -1,12 +1,14 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { TodoInputComponent } from './features/todos/components/todo-input.component';
+import { TodoListComponent } from './features/todos/components/todo-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  standalone: true,
+  imports: [TodoInputComponent, TodoListComponent],
+  template: `
+    <app-todo-input></app-todo-input>
+    <app-todo-list></app-todo-list>
+  `
 })
-export class App {
-  protected readonly title = signal('ngrx-demo');
-}
+export class App { }
