@@ -8,10 +8,8 @@ import { addTodo } from '../store/todos.actions';
     selector: 'app-todo-input',
     standalone: true,
     imports: [CommonModule, FormsModule],
-    template: `
-    <input [(ngModel)]="title" placeholder="Enter new todo" />
-    <button (click)="onAdd()">Add Todo</button>
-  `
+    templateUrl: './todo-input.component.html',
+    styleUrls: ['./todo-input.component.css']
 })
 export class TodoInputComponent {
     title: string = '';
