@@ -1,0 +1,29 @@
+<div class="todo-card todo-list-root">
+    <div *ngIf="loading$ | async" class="loading">
+        <div class="spinner" aria-hidden></div>
+        <span>Loading todos...</span>
+    </div>
+
+    <ng-container *ngIf="(todos$ | async) as todos">
+        <header class="header">
+            <div class="title-row">
+                <h2 class="main-title">My Tasks <span class="count">{{ todos.length }}</span></h2>
+                <small class="kbd">Press Enter to add</small>
+            </div>
+            <p class="subtitle">Stay focused — small wins every day.</p>
+        </header>
+
+        <ul>
+            <li *ngIf="todos.length === 0" class="empty">No todos yet — add your first task.</li>
+            <li *ngFor="let todo of todos" [class.completed]="todo.completed">
+                <label class="item">
+                    <input type="checkbox" [checked]="todo.completed" (change)="onToggle(todo.id)" />
+                    <span class="title">{{ todo.title }}</span>
+                </label>
+                <div class="actions">
+                    <button class="ghost" (click)="onDelete(todo.id)" aria-label="Delete todo">Delete</button>
+                </div>
+            </li>
+        </ul>
+    </ng-container>
+</div>
